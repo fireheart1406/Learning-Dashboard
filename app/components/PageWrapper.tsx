@@ -1,6 +1,12 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, type Transition } from 'framer-motion';
+
+const springTransition: Transition = {
+  type: 'spring',
+  stiffness: 260,
+  damping: 24,
+};
 
 const containerVariants = {
   hidden: {},
@@ -14,7 +20,7 @@ export const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: 'spring', stiffness: 260, damping: 24 },
+    transition: springTransition,
   },
 };
 
