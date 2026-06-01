@@ -12,7 +12,7 @@ function DynamicIcon({
   name: string;
   size?: number;
 }) {
-  const Icon = (Icons as Record<string, Icons.LucideIcon>)[name];
+  const Icon = (Icons as unknown as Record<string, Icons.LucideIcon>)[name];
 
   if (!Icon) {
     return <Icons.BookOpen size={size} />;
