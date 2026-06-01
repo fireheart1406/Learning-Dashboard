@@ -1,16 +1,13 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, type Transition } from 'framer-motion';
 import CourseCard from './CourseCard';
 import type { Course } from '../types';
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
+const springTransition: Transition = {
+  type: 'spring',
+  stiffness: 260,
+  damping: 24,
 };
 
 const itemVariants = {
@@ -18,11 +15,7 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      type: 'spring',
-      stiffness: 260,
-      damping: 24,
-    },
+    transition: springTransition,
   },
 };
 
@@ -37,10 +30,8 @@ export default function AnimatedGrid({ courses }: { courses: Course[] }) {
           animate="visible"
           custom={index}
           transition={{
+            ...springTransition,
             delay: index * 0.1,
-            type: 'spring',
-            stiffness: 260,
-            damping: 24,
           }}
         >
           <CourseCard course={course} />
